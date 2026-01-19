@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Memes">
+    <meta name="keywords" content="No memes">
+    <meta name="author" content="Pelvis">
+    <meta name="theme-color" content="#8b5cf6">
+
+    <title>Xryn - Links</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0b0f1a;
+            --panel: rgba(17, 24, 39, 0.92);
+            --panel-strong: rgba(12, 17, 28, 0.95);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-strong: rgba(255, 255, 255, 0.1);
+            --accent: #9f7aea;
+            --accent-soft: rgba(159, 122, 234, 0.18);
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-soft) rgba(0, 0, 0, 0.3);
+        }
+
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: var(--accent-soft);
+            border-radius: 4px;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background: rgba(159, 122, 234, 0.35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(159, 122, 234, 0.14), transparent 32%),
+                        radial-gradient(circle at 80% 10%, rgba(99, 102, 241, 0.08), transparent 34%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 96px 96px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .blur-bg {
+            backdrop-filter: blur(12px);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .link-card {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            background: var(--panel-strong);
+            border: 1px solid var(--border);
+            transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle, rgba(159, 122, 234, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .link-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-card i {
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-strong);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-card:hover i:not(.fa-external-link-alt):not(.fa-chevron-right) {
+            color: #c4b5fd;
+            transform: translateY(-1px);
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-spin-slow {
+            animation: spinSlow 10s linear infinite;
+        }
+
+        #noticeModal .fade-in,
+        #donateModal .fade-in {
+            animation-duration: 0.5s;
+        }
+
+        #noticeModal.hidden,
+        #donateModal.hidden {
+            pointer-events: none;
+        }
+
+        .copy-button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .copy-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .eth-address {
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(159, 122, 234, 0.3);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        button:focus-visible, a:focus-visible, .link-card[tabindex]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .text-subtle { color: var(--muted); }
+        .text-accent { color: #c4b5fd; }
+
+        .brand-icon {
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid var(--border);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .icon-pill {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: #c4b5fd;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .muted-surface {
+            background: var(--panel-strong);
+            border: 1px solid var(--border);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            main {
+                max-width: 100% !important;
+                margin: 0 1rem;
+            }
+
+            .link-card {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem !important;
+            }
+        }
+
+        #loadingScreen {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 gap-4">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div id="loadingScreen" class="fixed inset-0 bg-black z-50 flex items-center justify-center" aria-label="Loading" role="status">
+        <div class="loading-spinner" aria-hidden="true"></div>
+    </div>
+    
+    <main class="blur-bg rounded-2xl p-8 max-w-3xl w-full fade-in" role="main">
+        <div class="flex items-center justify-between gap-4 mb-2">
+            <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-subtle mb-3">xryn.site</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 mb-4 text-subtle text-xs uppercase tracking-[0.18em]">
+            <span class="h-px w-8 bg-white/10"></span>
+            <span>Profiles & Support</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="https://steamcommunity.com/id/vladimir_yaro" target="_blank" rel="noopener noreferrer" class="link-card block rounded-xl p-4 text-gray-200">
+                <div class="flex items-center gap-3">
+                    <span class="icon-pill"><i class="fab fa-steam text-lg"></i></span>
+                    <div class="flex-1">
+                        <div class="font-semibold">Steam</div>
+                        <p class="text-xs text-subtle">Profile, games, and stats</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-sm text-subtle"></i>
+                </div>
+            </a>
+
+            <a href="https://www.reddit.com/user/xryn4/" target="_blank" rel="noopener noreferrer" class="link-card block rounded-xl p-4 text-gray-200">
+                <div class="flex items-center gap-3">
+                    <span class="icon-pill"><i class="fab fa-reddit text-lg"></i></span>
+                    <div class="flex-1">
+                        <div class="font-semibold">Reddit</div>
+                        <p class="text-xs text-subtle">Posts and discussions</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-sm text-subtle"></i>
+                </div>
+            </a>
+
+            <a href="https://discord.com/users/1381370596335812699" target="_blank" rel="noopener noreferrer" class="link-card block rounded-xl p-4 text-gray-200">
+                <div class="flex items-center gap-3">
+                    <span class="icon-pill"><i class="fab fa-discord text-lg"></i></span>
+                    <div class="flex-1">
+                        <div class="font-semibold">Discord Profile</div>
+                        <p class="text-xs text-subtle">For chats dirrectly with me</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-sm text-subtle"></i>
+                </div>
+            </a>
+
+            <a href="https://fatality.win/members/eclipsecc.70418/" target="_blank" rel="noopener noreferrer" class="link-card block rounded-xl p-4 text-gray-200">
+                <div class="flex items-center gap-3">
+                    <span class="icon-pill"><i class="fas fa-f text-lg"></i></span>
+                    <div class="flex-1">
+                        <div class="font-semibold">Fatality Profile</div>
+                        <p class="text-xs text-subtle">Forum activity and releases</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-sm text-subtle"></i>
+                </div>
+            </a>
+    <script>
+        'use strict';
+
+        // Show loading overlay until all resources are loaded
+        (function() {
+            document.body.setAttribute('aria-busy', 'true');
+            window.addEventListener('load', () => {
+                const ls = document.getElementById('loadingScreen');
+                if (ls) {
+                    ls.style.opacity = '0';
+                    setTimeout(() => {
+                        ls.style.display = 'none';
+                        document.body.removeAttribute('aria-busy');
+                    }, 300);
+                } else {
+                    document.body.removeAttribute('aria-busy');
+                }
+            });
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Add keyboard support to interactive divs
+            const interactiveDivs = document.querySelectorAll('[role="button"]');
+            interactiveDivs.forEach(div => {
+                div.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        div.click();
+                    }
+                });
+            });
+
+            // Close modal on background click
+            document.getElementById('noticeModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideModal();
+                }
+            });
+
+            // Close donate modal on background click
+            document.getElementById('donateModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideDonateModal();
+                }
+            });
+
+            // Keyboard navigation for modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (!document.getElementById('noticeModal').classList.contains('hidden')) {
+                        hideModal();
+                    }
+                    if (!document.getElementById('donateModal').classList.contains('hidden')) {
+                        hideDonateModal();
+                    }
+                }
+            });
+
+            // Check for #privacy hash and open modal
+            if (window.location.hash === '#privacy') {
+                showModal();
+            }
+        });
+
+        // Discord Copy
+        function copyDiscord() {
+            navigator.clipboard.writeText('Pelvis.ft').then(() => {
+                const discordCard = document.querySelector('.link-card:last-child');
+                const original = discordCard.innerHTML;
+                discordCard.innerHTML =
+                    `<div class="flex items-center"><i class="fas fa-check text-2xl mr-4 text-green-600"></i><div><div class="font-semibold">Copied!</div><div class="text-sm opacity-75">Pelvis.ft</div></div></div>`;
+                setTimeout(() => discordCard.innerHTML = original, 2000);
+            });
+        }
+
+        // Modal functions
+        function showModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.remove('hidden');
+            // Focus the close button for accessibility
+            setTimeout(() => {
+                const closeBtn = modal.querySelector('button');
+                if (closeBtn) closeBtn.focus();
+            }, 100);
+        }
+
+        function hideModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.add('hidden');
+            // Return focus to the data usage notice card
+            const noticeCard = document.querySelector('[onclick="showModal()"]');
+            if (noticeCard) noticeCard.focus();
+        }
+
+        // Donate modal functions
+        function showDonateModal() {
+            const modal = document.getElementById('donateModal');
+            modal.classList.remove('hidden');
+            // Focus the close button for accessibility
+            setTimeout(() => {
+                const closeBtn = modal.querySelector('button');
+                if (closeBtn) closeBtn.focus();
+            }, 100);
+        }
+
+        function hideDonateModal() {
+            const modal = document.getElementById('donateModal');
+            modal.classList.add('hidden');
+            // Return focus to the support card
+            const supportCard = document.getElementById('supportCard');
+            if (supportCard) supportCard.focus();
+        }
+
+        function copyAddress(addressId, buttonTextId) {
+            const addressElement = document.getElementById(addressId);
+            const address = addressElement?.textContent.trim();
+            const buttonText = document.getElementById(buttonTextId);
+            const button = buttonText?.parentElement;
+            
+            if (!address || !buttonText || !button) {
+                console.error('Copy failed: Invalid element IDs');
+                return;
+            }
+            
+            navigator.clipboard.writeText(address).then(() => {
+                const originalText = buttonText.innerHTML;
+                buttonText.innerHTML = '✓ Copied!';
+                button.classList.add('bg-green-600');
+                button.classList.remove('bg-gray-900', 'bg-opacity-70', 'hover:bg-opacity-90');
+                
+                setTimeout(() => {
+                    buttonText.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                    button.classList.add('bg-gray-900', 'bg-opacity-70', 'hover:bg-opacity-90');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                const originalText = buttonText.innerHTML;
+                buttonText.innerHTML = '✗ Failed';
+                button.classList.add('bg-red-600');
+                button.classList.remove('bg-gray-900', 'bg-opacity-70', 'hover:bg-opacity-90');
+                
+                setTimeout(() => {
+                    buttonText.innerHTML = originalText;
+                    button.classList.remove('bg-red-600');
+                    button.classList.add('bg-gray-900', 'bg-opacity-70', 'hover:bg-opacity-90');
+                }, 2000);
+            });
+        }
+
+        // Particles
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.16 + 0.12
+            };
+        }
+
+        function initParticles() {
+            const particleCount = Math.min(
+                Math.floor((canvas.width * canvas.height) / 20000),
+                120 // Cap at 120 particles for better performance
+            );
+            particles = Array.from(
+                { length: particleCount },
+                createParticle
+            );
+        }
+
+        function updateParticles() {
+            for (const p of particles) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(139,92,246,${p.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            updateParticles();
+            drawParticles();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        resizeCanvas();
+        initParticles();
+        animate();
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"e8641292f3874ecfa50132086904be13","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c0012fe1f29f581',t:'MTc2ODc2MDA4OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
