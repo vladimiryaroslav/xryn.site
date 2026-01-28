@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/403",
+      "destination": "/403.html",
+      "statusCode": 403
+    }
+  ]
+}
