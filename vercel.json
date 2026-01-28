@@ -1,7 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/403",
+      "source": "/index.php",
       "destination": "/403.html",
       "statusCode": 403
     }
